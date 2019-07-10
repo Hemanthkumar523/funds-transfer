@@ -1,0 +1,48 @@
+hi this s hemanth kumar working as a devops engineer
+package shaine;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Getallselcandfirstselct {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver.exe");
+		//create object to access chrome browser
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select_multiple");
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		//multi select
+		driver.switchTo().frame("iframeResult");
+		WebElement e=driver.findElement(By.name("cars"));
+		Select s=new Select(e);
+		Thread.sleep(5000);
+		int x=s.getOptions().size();
+		System.out.println("total count of items is"+x);
+
+			Actions a=new Actions(driver);
+			a.keyDown(Keys.CONTROL).build().perform();
+			a.click(s.getOptions().get(1)).build().perform();
+			a.click(s.getOptions().get(3)).build().perform();
+			a.keyUp(Keys.CONTROL).build().perform();
+			Thread.sleep(5000);
+			int y=s.getAllSelectedOptions().size();
+			System.out.println("total count of items is"+y);
+			String z=s.getFirstSelectedOption().getText();
+			System.out.println(z);
+	}
+
+
+
+
+
+
+
+}
+
