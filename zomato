@@ -1,0 +1,95 @@
+package shaine;
+
+import java.util.Scanner;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Crossbrowser {
+
+
+	private static Scanner sc;
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		System.out.println("enter browse name");
+		sc = new Scanner(System.in);
+        String x=sc.nextLine();
+        WebDriver driver=null;
+	
+        	if(x.equals("Chrome"))
+        		
+        	{
+    			System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver\\chromedriver.exe");
+
+        	driver=new ChromeDriver();
+        	}
+        	else if (x.equals("Firefox"))
+        	{
+        		System.setProperty("webdriver.gecko.driver", "E:\\Selenium\\geckodriver-v0.19.1-win64\\geckodriver.exe");
+        		driver=new FirefoxDriver();
+        	}
+        	else if (x.equals("Opera"))
+        	{
+    			System.setProperty("webdriver.opera.driver", "E:\\Selenium\\operadriver_win32\\operadriver_win32\\operadriver.exe");
+    			driver=new OperaDriver();
+        	}
+        	else if (x.equals("ie"))
+        	{
+        		System.setProperty("webdriver.ie.driver", "E:\\Selenium\\IEDriverServer_Win32_3.9.0\\IEDriverServer.exe");
+        	driver=new InternetExplorerDriver();
+
+        	}
+        	else
+        	{
+        		System.out.println("wrong browser name");
+        		System.exit(0);
+        	}
+        	{
+        		driver.get("http://newtours.demoaut.com");
+        		Thread.sleep(5000);
+        		driver.findElement(By.linkText("REGISTER")).click();
+        		Thread.sleep(5000);
+        		driver.findElement(By.name("firstName")).sendKeys("abdul");
+        	      driver.findElement(By.name("lastName")).sendKeys("kalam");
+        	      driver.findElement(By.name("phone")).sendKeys("9911569469");
+        	      driver.findElement(By.name("userName")).sendKeys("apj@abdulkalam.com");
+        	      driver.findElement(By.name("address1")).sendKeys("mosque street");
+        	      driver.findElement(By.name("address2")).sendKeys("dhanuskoti road");
+        	      driver.findElement(By.name("city")).sendKeys("rameswaram");
+        	      driver.findElement(By.name("state")).sendKeys("tamilanadu");
+        	      driver.findElement(By.name("postalCode")).sendKeys("65678");
+        	      Thread.sleep(5000);
+        	      WebElement e=driver.findElement(By.name("country"));
+        	      Select s=new Select(e);
+        	      s.selectByVisibleText("INDIA");
+        	      Thread.sleep(5000);
+        	      driver.findElement(By.name("email")).sendKeys("apjkalam11");
+        	      driver.findElement(By.name("password")).sendKeys("rajsree");
+        	      driver.findElement(By.name("confirmPassword")).sendKeys("rajsree");
+        	      Thread.sleep(5000);
+        	      driver.findElement(By.name("register")).click();
+        	      Thread.sleep(5000);
+        	      //close site
+        	      driver.close();
+        	}
+        	}
+
+        	}
+	
+        		
+        		
+
+        	
+        	
+        
+	
+
+
+
