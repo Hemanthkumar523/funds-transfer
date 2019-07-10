@@ -1,0 +1,28 @@
+package shaine;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Countimages {
+
+	public static void main(String[] args)
+	{
+		System.setProperty("webdriver.gecko.driver", "E:\\Selenium\\geckodriver-v0.19.1-win64\\geckodriver.exe");
+		FirefoxDriver driver=new FirefoxDriver();
+		driver.get("http://www.google.com");
+		List<WebElement>  l=driver.findElements(By.xpath("(//img)|(//input[@type='image'])"));
+		System.out.println("count of images is"+l.size());
+		
+		driver.close();
+
+
+
+		
+
+	}
+
+}
+
